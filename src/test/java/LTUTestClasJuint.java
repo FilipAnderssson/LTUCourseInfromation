@@ -1,9 +1,15 @@
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.TestInfo;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class LTUTestClasJuint {
     private SelenideRun web_bot;
 
@@ -15,6 +21,7 @@ public class LTUTestClasJuint {
     }
 
     @Test
+    @Order(1)
     void testIsExamInformationCorrect() {
 
         web_bot.navigate_to_exam();
@@ -30,5 +37,39 @@ public class LTUTestClasJuint {
 
         boolean result = SelenideRun.isExamInformationCorrect(examInfo, course, date, location, start, end);
         assertTrue(result, "Exam information is incorrect.");
+
+        web_bot.logout_kronox();
+    }
+    @Test
+    @Disabled
+    @Order(2)
+    void CreatesTranscript(){
+        web_bot.navigate_to_transcript();
+        boolean result = web_bot.createsTranscript();
+        assertTrue(result, "Transcript not created");
+    }
+
+    @Test
+    @Order(3)
+    void downloadTranscript(){
+        web_bot.navigate_to_transcript();
+        web_bot.download_transcript();
+        boolean result = web_bot.isIntygPdfPresent();
+        assertTrue(result, "Intyg not found");
+    }
+
+    @Test
+    @Order(4)
+    void downloadCourseSyllabuls(){
+        web_bot.Download_course_syllabus();
+        boolean result = web_bot.isSyllabulsPresent();
+        assertTrue(result, "Syllabuls not found");
+    }
+
+    @AfterEach
+    void exit(TestInfo testInfo){
+        if (!testInfo.getTestMethod().orElseThrow().getName().equals("downloadCourseSyllabuls")) {
+            web_bot.logout_ltu();
+        }
     }
 }

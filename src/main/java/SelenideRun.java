@@ -6,14 +6,14 @@ import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.io.File;
-import java.nio.file.StandardCopyOption;
 
 import com.codeborne.selenide.Screenshots;
 import java.io.IOException;
-import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 import static com.codeborne.selenide.Selenide.*;
@@ -43,8 +43,6 @@ public class SelenideRun {
 
     public static void run_setup() {
 
-        System.setProperty("selenide.holdBrowserOpen", "true");
-
         // Load the JSON file into a String
         String jsonString = null;
         try {
@@ -66,6 +64,11 @@ public class SelenideRun {
         //Opens LTU website
         try {
             Configuration.browser = "chrome";
+
+            String currentDirectory = Paths.get("").toAbsolutePath().toString();
+            String targetPath = currentDirectory + "/target/files";
+
+            Configuration.downloadsFolder = targetPath;
 
             Configuration.browserSize = "1920x1080";
 
