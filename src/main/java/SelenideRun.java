@@ -201,6 +201,8 @@ public class SelenideRun {
 
             logger.info("Information about exam collected");
 
+            logger.info("Exam is the following date: " + date);
+
             return new ExamInformation(course, date, location, start, end);
         }
         catch (Exception e){
