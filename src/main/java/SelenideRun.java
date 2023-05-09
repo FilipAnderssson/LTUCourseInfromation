@@ -1,6 +1,8 @@
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selectors;
+import com.codeborne.selenide.WebDriverRunner;
 import org.json.JSONObject;
+import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +17,8 @@ import java.nio.file.Path;
 
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class SelenideRun {
     static String email = "";
@@ -234,4 +238,299 @@ public class SelenideRun {
                 examInfo.getStart().contains(correctStart) &&
                 examInfo.getEnd().contains(correctEnd);
     }
+
+    public void logout_kronox(){
+
+        try {
+            //Switches to new window and sleeps
+            switchTo().window(1);
+            sleep(1000);
+            logger.info("Kronox window selected");
+
+        } catch (Exception e) {
+            logger.error("Error occured while switching window " + e);
+        }
+
+        try{
+            //Presses logout button
+            $(Selectors.byCssSelector("a[class='greenbutton']")).click();
+            logger.info("User logged out");
+        }
+        catch (Exception e){
+            logger.error("An error occured while logging out : " + e);
+        }
+
+
+    }
+
+    public void logout_ltu(){
+
+
+        try {
+            //Switches to new window and sleeps
+            switchTo().window(0);
+            sleep(1000);
+            logger.info("LTU window selected");
+
+        } catch (Exception e) {
+            logger.error("Error occured while switching window " + e);
+        }
+
+        try{
+            //Presses avatar button
+            $(Selectors.byCssSelector("a[class^='user-avatar-link']")).click();
+
+            //Presses logout button
+            $(Selectors.byCssSelector("a[title^='Logga']")).click();
+
+            logger.info("User logged out");
+        }
+        catch (Exception e){
+            logger.error("An error occured while logging out : " + e);
+        }
+    }
+    public void navigate_to_transcript() {
+        try{
+            //Find "Intyg btn" and click it
+            $(Selectors.byCssSelector("html > body > div > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > ul:nth-of-type(2) > li:nth-of-type(4) > a")).click();
+            logger.info("Intyg button clicked");
+        }
+        catch (Exception e){
+            logger.error("Could not find intyg button error : " + e);
+        }
+
+
+        try {
+            //Switches to new window and sleeps
+            switchTo().window(2);
+            sleep(1000);
+            logger.info("Ladok window selected");
+
+        } catch (Exception e) {
+            logger.error("Error occured while switching window " + e);
+        }
+        try{
+            if ($(Selectors.byCssSelector("button[class$='btn-light']")).exists()){
+                //accept cookies
+                $(Selectors.byCssSelector("button[class$='btn-light']")).click();
+                logger.info("Cookies button clicked");
+            }
+            else{
+                logger.info("No cookies was shown");
+            }
+
+        }
+        catch (Exception e){
+            logger.error("Could not find cookies button error : " + e);
+
+        }
+
+        try{
+            //Login through school btn click
+            $(Selectors.byCssSelector("a[class$='btn-ladok-inloggning']")).click();
+            logger.info("School button clicked");
+        }
+        catch (Exception e){
+            logger.error("Could not find school button error : " + e);
+
+        }
+
+        try{
+            //Enter school through send keys
+            $(Selectors.byCssSelector("input[id='searchinput']")).sendKeys("LTU");
+            logger.info("School name entered");
+
+        }
+        catch (Exception e){
+            logger.error("could not send keys to school name error : " + e);
+        }
+
+        try{
+            //Click on LTU
+            $(Selectors.byCssSelector("div[class$='institution-text']")).click();
+            logger.info("LTU clicked");
+
+        }
+        catch (Exception e){
+            logger.error("Could not click on LTU error : " + e);
+        }
+
+
+        try{
+            //Click on transcripts and certification
+            $(Selectors.byCssSelector("html > body > ladok-root > div > ladok-sido-meny > nav > div:nth-of-type(1) > ul:nth-of-type(1) > li:nth-of-type(3) > ladok-behorighetsstyrd-nav-link > a")).click();
+            logger.info("Transcripts and certification clicked");
+        }
+        catch (Exception e){
+            logger.error("Could not click on transcripts and certification error : " + e);
+        }
+
+    }
+
+    public boolean createsTranscript(){
+
+        try {
+            //Create button click
+            $(Selectors.byCssSelector("html > body > ladok-root > div > main > div > ladok-intyg > ladok-skapa-intyg-knapp > div > button")).click();
+            logger.info("Create button clicked");
+
+        }
+        catch (Exception e){
+            logger.error("Could not click on create button error : " + e);
+        }
+
+        try {
+            //Open dropdown menu
+            $(Selectors.byCssSelector("select[class^='form-select']")).click();
+            logger.info("Dropdown menu opened");
+        }
+        catch (Exception e){
+            logger.error("Could not open dropdown menu error : " + e);
+        }
+        try {
+            sleep(1000);
+            //Selects certificate of registration
+            $(Selectors.byCssSelector("select[id='intygstyp']")).selectOption("Registreringsintyg");
+            logger.info("Certificate of registration selected");
+        }
+        catch (Exception e){
+            logger.error("Could not select certificate of registration error : " + e);
+        }
+
+        try {
+            sleep(1000);
+            //Checks the box "All registrations arranged by programme (or equivalent)"
+            $(Selectors.byCssSelector("input[id='allaRegistreringarGrupperdePaProgramRadio']")).click();
+            logger.info("Checkbox clicked");
+        }
+        catch (Exception e){
+            logger.error("Could not click checkbox error : " + e);
+        }
+
+        try{
+            sleep(1000);
+            //Creates the transcript button click
+            $(Selectors.byCssSelector("button[class*='btn-ladok-brand']")).click();
+            logger.info("Transcript created");
+            return true;
+        }
+        catch (Exception e){
+            logger.error("Transcript not created error : " + e.getMessage());
+            return false;
+        }
+    }
+
+    public void download_transcript(){
+
+        sleep(1000);
+        //Downloads the transcript
+        $(Selectors.byCssSelector("a[class='card-link']")).click();
+    }
+
+    public static boolean isIntygPdfPresent() {
+        // Get the current working directory
+        String currentDirectory = Paths.get("").toAbsolutePath().toString();
+        String targetPath = currentDirectory + "/target/files/Intyg.pdf";
+
+        File IntygPdf = new File(targetPath);
+
+        // Return true if the file exists, false otherwise
+        return IntygPdf.exists();
+    }
+
+    public static boolean isSyllabulsPresent() {
+        // Get the current working directory
+        String currentDirectory = Paths.get("").toAbsolutePath().toString();
+        String targetPath = currentDirectory + "/target/files/Kursplan_I0015N.pdf";
+
+        File SyllabulsPdf = new File(targetPath);
+
+        // Return true if the file exists, false otherwise
+        return SyllabulsPdf.exists();
+    }
+
+    public void Download_course_syllabus() {
+
+        try {
+            // Click homepage
+            sleep(1000);
+            $(Selectors.byCssSelector("img[data-img='/ltu-theme/images/ltu/header/logo.png']")).click();
+            logger.info("Homepage clicked");
+        } catch (Exception e) {
+            logger.error("Could not click homepage error : " + e);
+        }
+
+        //Accepts cookies
+        try {
+            if ($(Selectors.byId("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).exists()) {
+                $(Selectors.byId("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
+
+                logger.info("Cockies notification has been closed");
+            } else {
+                logger.info("Cookies notification was not shown");
+            }
+        } catch (Exception e) {
+            logger.error("Error occurred with cookies window: ", e);
+        }
+
+        try {
+            // Click search button and send keys
+            sleep(1000);
+            $(Selectors.byXpath("//button[contains(@class, 'ltu-search-btn')]")).click();
+            //Send keys
+            $(Selectors.byCssSelector("input[id='cludo-search-bar-input']")).sendKeys("I0015N");
+            logger.info("Sent keys to search button");
+        } catch (Exception e) {
+            logger.error("Could not send keys to search button error : " + e);
+        }
+
+        try {
+            // Click search
+            sleep(1000);
+            $(Selectors.byXpath("//button[@class='button is-medium is-info']")).click();
+            logger.info("Search button clicked");
+        } catch (Exception e) {
+            logger.error("Could not click search button error : " + e);
+        }
+
+        try {
+            // Click course
+            sleep(1000);
+            $(Selectors.byCssSelector("a[class='courseTitle'] h2")).click();
+            logger.info("Course clicked");
+        } catch (Exception e) {
+            logger.error("Could not click course error : " + e);
+        }
+        try {
+            //Selects the right year
+            $(Selectors.byXpath("/html/body/main/div/div/div/div[2]/div/article/div[1]/section/div[4]/ul/li[2]/a/span[2]")).click();
+            logger.info("Right year selected");
+        }
+        catch (Exception e){
+            logger.error("Could not select right year error : " + e);
+        }
+
+
+        try {
+            // Scroll and find course syllbuls link and click
+            sleep(1000);
+            $(Selectors.byXpath("/html/body/main/div/div/div/div[2]/div/article/div[1]/section/div[8]/div")).scrollTo();
+            sleep(1000);
+            $(Selectors.byCssSelector("#maincontent > article > div.article-container > section > div.more-edu-info > div > a")).click();
+            logger.info("Scrolled to course syllabus link and clicked it");
+        } catch (Exception e) {
+            logger.error("Could not scroll to course syllabus link error : " + e);
+        }
+
+        try {
+            // Downloads the pdf
+            sleep(1000);
+            $(Selectors.byXpath("/html/body/main/div/div/div/div[2]/div/article/div[1]/section/form/div[4]/a/div")).click();
+            logger.info("PDF downloaded");
+        } catch (Exception e) {
+            logger.error("Could not download PDF error : " + e);
+        }
+
+    }
+
 }

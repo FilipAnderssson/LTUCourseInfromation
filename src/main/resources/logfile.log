@@ -1,0 +1,35 @@
+2023-05-09 19:05:39.201 [main] ERROR LTUTestCase - This is a test error dont worry honey
+2023-05-09 19:05:39.244 [main] INFO  c.c.s.i.WebDriverThreadLocalContainer - No webdriver is bound to current thread: 1 - let's create a new webdriver
+2023-05-09 19:05:39.272 [main] INFO  c.codeborne.selenide.impl.FileHelper - Creating folder: C:\Users\Filip\IdeaProjects\LTUCourseInfromation\target\files\1683651939260_22240_1
+2023-05-09 19:05:39.574 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 113.0.5672.63 (resolved driver for Chrome 113)
+2023-05-09 19:05:39.592 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\Filip\.cache\selenium\chromedriver\win32\113.0.5672.63\chromedriver.exe
+2023-05-09 19:05:39.653 [main] INFO  c.c.s.w.SelenideNettyClientFactory - Changed readTimeout from PT3M to PT1M30S
+2023-05-09 19:05:40.702 [main] INFO  c.c.s.w.SelenideNettyClientFactory - Changed readTimeout from PT3M to PT1M30S
+2023-05-09 19:05:40.708 [main] INFO  c.c.s.w.SelenideNettyClientFactory - Changed readTimeout from PT3M to PT1M30S
+2023-05-09 19:05:40.753 [main] INFO  c.c.s.webdriver.WebDriverFactory - BrowserName=chrome Version=113.0.5672.92 Platform=WINDOWS
+2023-05-09 19:05:40.753 [main] INFO  c.c.s.webdriver.WebDriverFactory - Selenide v. 6.13.0
+2023-05-09 19:05:40.753 [main] INFO  c.c.s.webdriver.WebDriverFactory - Selenium WebDriver v. 4.8.3 build revision: e5e76298c3
+2023-05-09 19:05:40.753 [main] INFO  c.c.s.d.CreateDriverCommand - Created webdriver in thread 1: ChromeDriver -> ChromeDriver: chrome on WINDOWS (f38ee46e62d915f1620337d10e86bc14)
+2023-05-09 19:05:40.755 [main] INFO  c.c.s.d.DisposablesRegistry - Register WebDriverInstance[config=StaticConfig,webDriver=ChromeDriver: chrome on WINDOWS (f38ee46e62d915f1620337d10e86bc14),proxy=null,downloadsFolder=C:\Users\Filip\IdeaProjects\LTUCourseInfromation\target\files\1683651939260_22240_1] in 1 [size=1]
+2023-05-09 19:05:40.755 [main] INFO  c.c.s.d.DisposablesRegistry - Add shutdown hook in 1 [size=1]
+2023-05-09 19:05:41.232 [main] INFO  LTUTestCase - Successfully opened webpage: Luleå tekniska universitet, LTU
+2023-05-09 19:05:41.370 [main] INFO  LTUTestCase - Cockies notification has been closed
+2023-05-09 19:05:41.753 [main] INFO  LTUTestCase - Student button successfully clicked
+2023-05-09 19:05:42.184 [main] INFO  LTUTestCase - Login button successfully clicked
+2023-05-09 19:05:43.818 [main] INFO  LTUTestCase - Credentials successfully entered and login button pressed
+2023-05-09 19:05:45.958 [main] INFO  LTUTestCase - Kronox window selected
+2023-05-09 19:05:46.043 [main] INFO  LTUTestCase - Username entered
+2023-05-09 19:05:46.091 [main] INFO  LTUTestCase - Password entered
+2023-05-09 19:05:46.501 [main] INFO  LTUTestCase - User logged in
+2023-05-09 19:05:48.677 [main] INFO  LTUTestCase - Opened activity view
+2023-05-09 19:05:48.915 [main] INFO  LTUTestCase - Information about exam collected
+2023-05-09 19:05:48.915 [main] INFO  LTUTestCase - Exam is the following date: Datum: 2023-05-30
+2023-05-09 19:05:49.929 [main] INFO  LTUTestCase - Kronox window selected
+2023-05-09 19:05:50.183 [main] INFO  LTUTestCase - User logged out
+2023-05-09 19:05:51.202 [main] INFO  LTUTestCase - LTU window selected
+2023-05-09 19:05:51.440 [main] INFO  LTUTestCase - User logged out
+2023-05-09 19:05:51.446 [Thread-2] INFO  c.c.s.d.DisposablesRegistry - Run cleanup: size=1
+2023-05-09 19:05:51.447 [Thread-2] INFO  c.codeborne.selenide.impl.FileHelper - Deleted empty folder: C:\Users\Filip\IdeaProjects\LTUCourseInfromation\target\files\1683651939260_22240_1
+2023-05-09 19:05:51.447 [Thread-2] INFO  c.c.s.d.CloseDriverCommand - Close webdriver: 30 -> ChromeDriver: chrome on WINDOWS (f38ee46e62d915f1620337d10e86bc14)...
+2023-05-09 19:05:51.574 [Thread-2] INFO  c.c.s.d.CloseDriverCommand - Closed webdriver 30 in 127 ms
+2023-05-09 19:05:51.574 [Thread-2] INFO  c.c.s.d.DisposablesRegistry - Finished cleanup
