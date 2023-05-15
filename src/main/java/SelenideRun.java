@@ -1,24 +1,14 @@
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selectors;
-import com.codeborne.selenide.WebDriverRunner;
 import org.json.JSONObject;
-import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.nio.file.*;
 import java.io.File;
-
-import com.codeborne.selenide.Screenshots;
 import java.io.IOException;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
-import org.openqa.selenium.chrome.ChromeOptions;
+
 
 public class SelenideRun {
     static String email = "";
